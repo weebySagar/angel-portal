@@ -1,6 +1,6 @@
 # Ascencia Malta — static UI
 
-A three-page React site for the Ascencia Malta frontend assignment: Home, About, and Contact. This branch is the waterline design: the school name is cut by a red band. The other looks are on `design/rising-mark` and `design/editorial`. Colours come from the school logo (ink `#191913`, red `#cd0732`). Wording and photographs are taken from the existing Ascencia Malta site.
+A three-page React site for the Ascencia Malta frontend assignment: Home, About, and Contact. This branch is the waterline design: the school name is cut by a red band. The other looks are on `design/rising-mark` and `design/chapters`. Colours come from the school logo (ink `#191913`, red `#cd0732`). Wording and photographs are taken from the existing Ascencia Malta site.
 
 The live site was returning Cloudflare error 522 while this was built, so the pages were read from the Internet Archive.
 
