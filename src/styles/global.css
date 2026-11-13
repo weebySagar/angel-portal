@@ -101,8 +101,10 @@ textarea {
   cursor: pointer;
 }
 
-.button:hover {
+.button:hover,
+.button:focus-visible {
   background: var(--ink);
+  color: var(--paper);
 }
 
 .button:active {
@@ -166,6 +168,10 @@ textarea {
   color: var(--ink);
   text-decoration: none;
   font-weight: 500;
+}
+
+.site-nav .button {
+  color: var(--paper);
 }
 
 .site-nav a[aria-current="page"] {
@@ -559,6 +565,17 @@ textarea {
   text-decoration: none;
 }
 
+.site-footer .button-light {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.site-footer .button-light:hover,
+.site-footer .button-light:focus-visible {
+  background: var(--red);
+  color: var(--paper);
+}
+
 .site-footer a:hover {
   color: #f3b4c2;
 }
@@ -721,30 +738,46 @@ textarea {
     position: sticky;
     top: 0;
     height: 100svh;
-    display: block;
-    padding: 0;
+    display: grid;
+    grid-template-columns: minmax(240px, 0.85fr) minmax(0, 1.15fr);
+    grid-template-rows: auto minmax(0, 1fr);
+    column-gap: 4vw;
+    align-items: stretch;
+    padding: 4vh var(--edge) 5vh;
   }
 
   .quote-title {
-    position: absolute;
-    top: 6vh;
-    left: var(--edge);
-    z-index: 2;
+    position: static;
+    grid-column: 1 / -1;
+    margin: 0 0 1.25rem;
+    font-size: clamp(3rem, 7vw, 6.25rem);
   }
 
   .quote-stage img {
-    position: absolute;
-    top: 54%;
-    left: max(var(--edge), 5vw);
-    width: min(26vw, 380px);
-    transform: translateY(-50%);
+    position: static;
+    grid-column: 1;
+    grid-row: 2;
+    width: 100%;
+    height: 100%;
+    max-height: none;
+    transform: none;
+    object-fit: cover;
+    object-position: center 15%;
+  }
+
+  .quote-copy {
+    position: relative;
+    grid-column: 2;
+    grid-row: 2;
+    min-height: 0;
   }
 
   .quote-stage blockquote {
     position: absolute;
-    right: max(var(--edge), 5vw);
-    top: 30%;
-    width: min(34rem, 38vw);
+    left: 0;
+    right: 0;
+    top: 8%;
+    width: auto;
     margin: 0;
     opacity: 0;
     transform: translateY(16px);
@@ -817,6 +850,14 @@ textarea {
     font-weight: 800;
     font-stretch: 62%;
     text-transform: uppercase;
+  }
+
+  .tile-wall {
+    grid-template-columns: 1fr;
+  }
+
+  .tile {
+    aspect-ratio: 16 / 10;
   }
 
   .poster-line {

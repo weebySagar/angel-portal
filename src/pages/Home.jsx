@@ -166,12 +166,14 @@ function DirectorStage() {
           width="800"
           height="1000"
         />
-        {quotes.map((quote, index) => (
-          <blockquote key={quote.text} className={step === index ? "is-on" : ""}>
-            <p>{quote.text}</p>
-            <footer>Dr Tess Giordmaina, Director</footer>
-          </blockquote>
-        ))}
+        <div className="quote-copy">
+          {quotes.map((quote, index) => (
+            <blockquote key={quote.text} className={step === index ? "is-on" : ""}>
+              <p>{quote.text}</p>
+              <footer>Dr Tess Giordmaina, Director</footer>
+            </blockquote>
+          ))}
+        </div>
       </div>
       {quotes.map((quote, index) => (
         <div key={quote.text} className="quote-spacer" data-step={index} />
