@@ -283,9 +283,31 @@ textarea {
   padding: 0;
 }
 
-.news-full {
-  margin: 0.15rem 0 1.4rem;
-  max-width: 40rem;
+.news-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.news-list li + li {
+  margin-top: 1.75rem;
+}
+
+.news-list h2 {
+  margin: 0;
+  max-width: 22ch;
+  text-transform: uppercase;
+  font-weight: 800;
+  font-stretch: 62%;
+  font-size: clamp(1.8rem, 3.6vw, 3.15rem);
+  line-height: 0.92;
+  letter-spacing: -0.02em;
+}
+
+.news-list p {
+  margin: 0.45rem 0 0;
+  color: var(--red);
+  font-weight: 600;
 }
 
 .poster-line {
@@ -368,51 +390,46 @@ textarea {
   font-weight: 500;
 }
 
-.quote-wrap {
-  background: var(--ink);
-}
-
 .quote-stage {
+  display: grid;
+  gap: 1.25rem;
   background: var(--ink);
   color: var(--paper);
-  padding: 4rem var(--edge) 3rem;
-  overflow: hidden;
+  padding: 3.5rem var(--edge) 3rem;
 }
 
 .quote-title {
-  margin: 0 0 1.5rem;
+  margin: 0;
   text-transform: uppercase;
   font-weight: 800;
   font-stretch: 62%;
-  font-size: clamp(3rem, 12vw, 8rem);
+  font-size: clamp(3rem, 8vw, 6.25rem);
   line-height: 0.86;
 }
 
 .quote-stage img {
-  width: min(100%, 28rem);
+  width: 100%;
+  max-height: 28rem;
   aspect-ratio: 4 / 5;
   object-fit: cover;
   object-position: center 18%;
 }
 
 .quote-stage blockquote {
-  margin: 1.4rem 0 0;
-  max-width: 36rem;
+  margin: 0 0 1.15rem;
 }
 
 .quote-stage blockquote p {
-  font-size: 1.35rem;
-  line-height: 1.3;
+  margin: 0;
+  font-size: 1.15rem;
+  line-height: 1.4;
   font-weight: 500;
 }
 
-.quote-stage footer {
-  margin-top: 0.6rem;
+.quote-byline {
+  margin: 0;
   color: #f3b4c2;
-}
-
-.quote-spacer {
-  display: none;
+  font-weight: 600;
 }
 
 .tile-wall {
@@ -529,11 +546,8 @@ textarea {
 .site-footer {
   background: var(--ink);
   color: var(--paper);
-  min-height: 100svh;
-  padding: 4rem var(--edge) 0;
+  padding: 3.5rem var(--edge) 0;
   overflow: hidden;
-  display: flex;
-  flex-direction: column;
 }
 
 .footer-top {
@@ -583,22 +597,21 @@ textarea {
 .footer-legal {
   display: grid;
   gap: 0.4rem;
-  margin-top: auto;
-  margin-bottom: 0.6rem;
+  margin: 2.5rem 0 0.6rem;
   font-size: var(--step-small);
   color: #f3efe8;
 }
 
 .cropped-name {
-  margin: 0;
+  margin: 1.25rem 0 0;
   font-weight: 800;
   font-stretch: 62%;
   text-transform: uppercase;
-  font-size: 34vw;
-  line-height: 0.8;
+  font-size: 22vw;
+  line-height: 0.72;
   letter-spacing: -0.04em;
   white-space: nowrap;
-  transform: translateY(28%);
+  transform: translateY(18%);
 }
 
 .priorities article {
@@ -730,70 +743,24 @@ textarea {
     padding: 8px;
   }
 
-  .quote-wrap {
-    height: 300svh;
-  }
-
   .quote-stage {
-    position: sticky;
-    top: 0;
-    height: 100svh;
-    display: grid;
-    grid-template-columns: minmax(240px, 0.85fr) minmax(0, 1.15fr);
-    grid-template-rows: auto minmax(0, 1fr);
+    grid-template-columns: minmax(240px, 0.78fr) minmax(0, 1.22fr);
     column-gap: 4vw;
-    align-items: stretch;
-    padding: 4vh var(--edge) 5vh;
+    row-gap: 1.5rem;
+    align-items: start;
+    padding: 4rem var(--edge) 4.5rem;
   }
 
   .quote-title {
-    position: static;
     grid-column: 1 / -1;
-    margin: 0 0 1.25rem;
-    font-size: clamp(3rem, 7vw, 6.25rem);
   }
 
   .quote-stage img {
-    position: static;
-    grid-column: 1;
-    grid-row: 2;
-    width: 100%;
-    height: 100%;
-    max-height: none;
-    transform: none;
-    object-fit: cover;
-    object-position: center 15%;
+    max-height: 40rem;
   }
 
   .quote-copy {
-    position: relative;
-    grid-column: 2;
-    grid-row: 2;
-    min-height: 0;
-  }
-
-  .quote-stage blockquote {
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 8%;
-    width: auto;
-    margin: 0;
-    opacity: 0;
-    transform: translateY(16px);
-    transition: opacity 0.45s ease, transform 0.45s ease;
-    pointer-events: none;
-  }
-
-  .quote-stage blockquote.is-on {
-    opacity: 1;
-    transform: none;
-    pointer-events: auto;
-  }
-
-  .quote-spacer {
-    display: block;
-    height: 100svh;
+    padding-top: 0.4rem;
   }
 
   .join-band {
@@ -884,29 +851,6 @@ textarea {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
-  }
-
-  .quote-wrap {
-    height: auto;
-  }
-
-  .quote-stage,
-  .quote-title,
-  .quote-stage img,
-  .quote-stage blockquote {
-    position: static;
-    width: min(100%, 40rem);
-    height: auto;
-    opacity: 1;
-    transform: none;
-  }
-
-  .quote-stage {
-    padding: 4rem var(--edge);
-  }
-
-  .quote-spacer {
-    display: none;
   }
 }
 

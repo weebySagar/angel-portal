@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import Waterline from "../components/Waterline";
 import { news, programmes, quotes } from "../data/content";
@@ -106,14 +106,11 @@ export default function Home() {
 
       <section className="panel panel-paper" aria-label="News and events">
         <div className="panel-pad">
-        <ul className="poster poster-ink">
+        <ul className="news-list">
           {news.map((item) => (
             <li key={item.title}>
-              <p className="poster-line poster-static">
-                <span>{item.short}</span>
-                <span className="poster-meta">{item.date}</span>
-              </p>
-              <p className="news-full">{item.title}</p>
+              <h2>{item.title}</h2>
+              <p>{item.date}</p>
             </li>
           ))}
         </ul>
@@ -135,49 +132,25 @@ export default function Home() {
 }
 
 function DirectorStage() {
-  const wrap = useRef(null);
-  const [step, setStep] = useState(0);
-
-  useEffect(() => {
-    const root = wrap.current;
-    if (!root) return undefined;
-    const nodes = root.querySelectorAll("[data-step]");
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) setStep(Number(entry.target.dataset.step));
-        });
-      },
-      { threshold: 0.55 },
-    );
-    nodes.forEach((node) => observer.observe(node));
-    return () => observer.disconnect();
-  }, []);
-
   return (
-    <section className="quote-wrap" ref={wrap} aria-labelledby="welcome-heading">
-      <div className="quote-stage">
-        <h2 id="welcome-heading" className="quote-title">
-          Starts here
-        </h2>
-        <img
-          src="/images/director.jpg"
-          alt="Dr Tess Giordmaina, Director of Ascencia Malta"
-          width="800"
-          height="1000"
-        />
-        <div className="quote-copy">
-          {quotes.map((quote, index) => (
-            <blockquote key={quote.text} className={step === index ? "is-on" : ""}>
-              <p>{quote.text}</p>
-              <footer>Dr Tess Giordmaina, Director</footer>
-            </blockquote>
-          ))}
-        </div>
+    <section className="quote-stage" aria-labelledby="welcome-heading">
+      <h2 id="welcome-heading" className="quote-title">
+        Starts here
+      </h2>
+      <img
+        src="/images/director.jpg"
+        alt="Dr Tess Giordmaina, Director of Ascencia Malta"
+        width="800"
+        height="1000"
+      />
+      <div className="quote-copy">
+        {quotes.map((quote) => (
+          <blockquote key={quote.text}>
+            <p>{quote.text}</p>
+          </blockquote>
+        ))}
+        <p className="quote-byline">Dr Tess Giordmaina, Director</p>
       </div>
-      {quotes.map((quote, index) => (
-        <div key={quote.text} className="quote-spacer" data-step={index} />
-      ))}
     </section>
   );
 }
